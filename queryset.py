@@ -66,9 +66,9 @@ class StorySet(object):
             start = 0
             stop  = -1
 
-        results = self._redis.zrevrange(self.setkey, start, stop)
+        self.set_story_keys = self._redis.zrevrange(self.setkey, start, stop)
         pipe = self._redis.pipeline()
-        [pipe.hgetall(slug) for slug in results]
+        [pipe.hgetall(key) for key in self.set_story_keys]
         self._results = pipe.execute()
         return self._results
 
@@ -185,7 +185,29 @@ class StorySet(object):
     @classmethod
     def all(cls):
         return cls("stories")
+    
+    def histogram(self, field, n=10):
+        """
+        field:tags
+        field:category
+        """
 
-    @classmethod
-    def aggregate(cls, val):
-        pass
+        field_key = "field:{}".format(field)
+        histogram_key = "aggregate:{}:{}:count".format(self.setkey, field)
+
+        self.fetch()
+        story_tags_keys = map( lambda s: "{}:{}".format(s,field), self.set_story_keys )
+        
+        print story_tags_keys
+        self._redis.zunionstore(histogram_key, story_tags_keys)
+
+        field_counts = []
+        for f in self._redis.zrevrange(histogram_key, 0, n, withscores=True):
+            field_name = self._redis.hget(field_key, t[0])
+            print field_name
+            field_counts.append({
+                "count" : t[1],
+                "name"  : tag_name,
+                "slug"  : t[0]
+            })        
+        return field_counts

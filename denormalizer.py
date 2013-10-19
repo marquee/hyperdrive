@@ -61,8 +61,9 @@ class Denormalizer(object):
                 yield story
 
             count = len(objs)
-            start+=limit
+            start+=count
             print "Synced", start, "stories"
+
 
     def _fetch_publication(self):
         pub = content_objects.filter(
@@ -84,6 +85,7 @@ class Denormalizer(object):
         pipe = self.redis.pipeline()
         for c in categories:
             pipe.hset("categories", c['_id'].split(":")[1], json.dumps(c))
+            pipe.hset("field:category", c['_id'].split(":")[1], c['title'])
 
         pipe.execute()        
 
@@ -94,9 +96,6 @@ class Denormalizer(object):
             self.store_story(story)
 
         self.finalize()
-
-    def store_publication(publication):
-        self.redis
 
     def store_story(self, story):
 
@@ -151,6 +150,10 @@ class Denormalizer(object):
                 "category:{}:stories".format(category_slug),
                 **{story_key : first_published_date.strftime("%s")}
             )
+            self.redis.sadd(
+                "story:{}:category".format(story['slug']),
+                category_slug
+            )
 
     def store_tags(self, story_key, story):
         tags = story.get('tags', [])
@@ -159,7 +162,7 @@ class Denormalizer(object):
         for tag in tags:
             # store <tag_slug> => <tag_name> so we can look up name easily
             self.redis.hset(
-                "tags",
+                "field:tags",
                 tag['slug'],
                 tag['name']
             )
@@ -169,9 +172,10 @@ class Denormalizer(object):
                 **{ story_key: first_published_date.strftime("%s")}
             )
 
-            self.redis.sadd("story:{}:tags".format(story['slug']), tag['slug'])
+            self.redis.zadd("story:{}:tags".format(story['slug']), 1, tag['slug'])
 
-    # def store_issue(self):
+            self.redis.zincrby("aggregate:stories:tags:count", tag['slug'], 1)
+
 
     def remove(self, story_slug):
         """
@@ -207,6 +211,7 @@ class Denormalizer(object):
                 # if cardinality of tag set is, remove it from tag hash
 
             self.redis.delete("story:{}:tags".format(story_slug))
+
 
         self.redis.delete(story_key)
         self.redis.zrem("stories", story['slug'])
