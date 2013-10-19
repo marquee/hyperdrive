@@ -1,0 +1,13 @@
+*.pyc
+*.swo
+*.swp
+*.swo
+.sass-cache/*
+.env
+.DS_Store
+static/*
+node_modules/*
+aws_config.json
+.env-development
+content
+composer
