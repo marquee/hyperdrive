@@ -1,0 +1,785 @@
+{
+    "_published_json": [
+        {
+            "annotations": [], 
+            "byline": "CustomMade", 
+            "category": "jewelry", 
+            "content": [
+                {
+                    "annotations": [
+                        {
+                            "end": 68, 
+                            "start": 46, 
+                            "type": "link", 
+                            "url": "http://www.custommade.com/pink-tourmaline-ring/by/williamtravisjewelry"
+                        }, 
+                        {
+                            "end": 200, 
+                            "start": 183, 
+                            "type": "link", 
+                            "url": "http://www.custommade.com/search?mode=projects&q=pink%20tourmaline&place=&range="
+                        }
+                    ], 
+                    "content": "The unique and striking shape of this ring by William Travis Jewelry and the fun color of the stone caught my and got me wondering, what other jewelry does CustomMade have with this  \u00a0\"pink tourmaline\" gemstone in it?", 
+                    "content_md5": "aba4fa6d333665cc2ea63281835fa995", 
+                    "created_date": "2013-08-26T23:23:15.237", 
+                    "id": "text:0b59c9a9863f44e1b17ec3601fb32d2e", 
+                    "layout": {
+                        "align": "left"
+                    }, 
+                    "modified_date": "2013-09-15T18:58:49.445", 
+                    "owner_id": 6838, 
+                    "role": "paragraph", 
+                    "size": 216, 
+                    "type": "text", 
+                    "url": "//marquee.by/content/text:0b59c9a9863f44e1b17ec3601fb32d2e/"
+                }, 
+                {
+                    "annotations": [
+                        {
+                            "type": "link", 
+                            "url": "http://www.custommade.com/pink-tourmaline-ring/by/williamtravisjewelry"
+                        }, 
+                        {
+                            "content": "Pink tourmaline ring by William Travis Jewelry. Available on CustomMade.com.", 
+                            "type": "caption"
+                        }
+                    ], 
+                    "content": {
+                        "1280": {
+                            "height": 1258, 
+                            "s3_key": "vCPXWSpLQuaTeXCtXuMU_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                            "size": 123068, 
+                            "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/vCPXWSpLQuaTeXCtXuMU_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                            "width": 1280
+                        }, 
+                        "640": {
+                            "height": 629, 
+                            "s3_key": "ZpBmaAY1RV2m88jWxjl4_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                            "size": 48933, 
+                            "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/ZpBmaAY1RV2m88jWxjl4_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                            "width": 640
+                        }
+                    }, 
+                    "content_md5": "10d9de60dbf3223247a01c41dcb2cfe6", 
+                    "created_date": "2013-08-26T23:23:16.837", 
+                    "id": "image:59b410c6c6c04d0e854b888a4136ddd3", 
+                    "layout": {
+                        "align": "left", 
+                        "position": "center", 
+                        "size": "medium"
+                    }, 
+                    "link_to": "http://www.custommade.com/pink-tourmaline-ring/by/williamtravisjewelry", 
+                    "modified_date": "2013-09-15T18:58:49.435", 
+                    "original": {
+                        "filename": "pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                        "height": 295, 
+                        "mimetype": "image/jpeg", 
+                        "s3_key": "swQixedaTiyzehkozKXV_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                        "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/swQixedaTiyzehkozKXV_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                        "width": 300
+                    }, 
+                    "owner_id": 6838, 
+                    "size": 2, 
+                    "type": "image", 
+                    "url": "//marquee.by/content/image:59b410c6c6c04d0e854b888a4136ddd3/"
+                }, 
+                {
+                    "annotations": [], 
+                    "content": "Here are a few more of my favorite pieces with pink tourmaline...", 
+                    "content_md5": "a4fdd32c4edf87fec30f8f8499652c0b", 
+                    "created_date": "2013-08-26T23:23:19.441", 
+                    "id": "text:7fb5b0c844554de7b1fc7481cfa22799", 
+                    "layout": {
+                        "align": "left"
+                    }, 
+                    "modified_date": "2013-09-15T18:58:49.431", 
+                    "owner_id": 6838, 
+                    "role": "paragraph", 
+                    "size": 65, 
+                    "type": "text", 
+                    "url": "//marquee.by/content/text:7fb5b0c844554de7b1fc7481cfa22799/"
+                }, 
+                {
+                    "annotations": [
+                        {
+                            "end": 51, 
+                            "start": 6, 
+                            "type": "link", 
+                            "url": "http://www.custommade.com/tourmaline-earrings/by/CalicoJunoDesigns"
+                        }
+                    ], 
+                    "content": "These beautiful earrings are by Calico Juno Designs. The gold wire wrapping is just stunningly well done and I love the combination of the pink tourmaline with the other stone you see which is called mandarine garnet.", 
+                    "content_md5": "d3857856a719edf793479ede11d02b18", 
+                    "created_date": "2013-08-26T23:23:19.441", 
+                    "id": "text:8c407731fc78483fb440b9d9058adaf6", 
+                    "layout": {
+                        "align": "left"
+                    }, 
+                    "modified_date": "2013-09-15T18:58:49.450", 
+                    "owner_id": 6838, 
+                    "role": "paragraph", 
+                    "size": 217, 
+                    "type": "text", 
+                    "url": "//marquee.by/content/text:8c407731fc78483fb440b9d9058adaf6/"
+                }, 
+                {
+                    "annotations": [
+                        {
+                            "type": "link", 
+                            "url": "http://www.custommade.com/tourmaline-earrings/by/CalicoJunoDesigns"
+                        }, 
+                        {
+                            "content": "Pink tourmaline and mandarine garnet earrings by Calico Juno Designs. Available on CustomMade.com.", 
+                            "type": "caption"
+                        }
+                    ], 
+                    "content": {
+                        "1280": {
+                            "height": 1280, 
+                            "s3_key": "V00OvoHTwyGtHq5ewkMx_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                            "size": 137050, 
+                            "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/V00OvoHTwyGtHq5ewkMx_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                            "width": 1280
+                        }, 
+                        "640": {
+                            "height": 640, 
+                            "s3_key": "InLyc07AQlOw6M2kS4o9_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                            "size": 53699, 
+                            "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/InLyc07AQlOw6M2kS4o9_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                            "width": 640
+                        }
+                    }, 
+                    "content_md5": "7c8583bd7d4541f2b189cdeedeff96d5", 
+                    "created_date": "2013-08-26T23:23:21.113", 
+                    "id": "image:b585cc9360b54bdd955f1c9050a85aac", 
+                    "layout": {
+                        "align": "left", 
+                        "position": "center", 
+                        "size": "medium"
+                    }, 
+                    "link_to": "http://www.custommade.com/tourmaline-earrings/by/CalicoJunoDesigns", 
+                    "modified_date": "2013-09-15T18:58:49.452", 
+                    "original": {
+                        "filename": "tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                        "height": 300, 
+                        "mimetype": "image/jpeg", 
+                        "s3_key": "kWe1ftTISYuUDuiRiTIk_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                        "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/kWe1ftTISYuUDuiRiTIk_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                        "width": 300
+                    }, 
+                    "owner_id": 6838, 
+                    "size": 2, 
+                    "type": "image", 
+                    "url": "//marquee.by/content/image:b585cc9360b54bdd955f1c9050a85aac/"
+                }, 
+                {
+                    "annotations": [
+                        {
+                            "end": 91, 
+                            "start": 51, 
+                            "type": "link", 
+                            "url": "http://www.custommade.com/galaxies/by/jenniferkalledfinejewelry"
+                        }, 
+                        {
+                            "end": 287, 
+                            "start": 230, 
+                            "type": "link", 
+                            "url": "http://www.custommade.com/galaxies/by/jenniferkalledfinejewelry"
+                        }
+                    ], 
+                    "content": "Pink tourmaline is just one of many stones on this bracelet by Jennifer Kalled Fine Jewelry. This bracelet is aptly named \"Galaxies\" as the artist was inspired by looking at the night skies when designing it. This bracelet can be custom made with many different combinations of gemstones depending on your taste.", 
+                    "content_md5": "6df0fea0c0bd124b93b9be4d7f7b99f8", 
+                    "created_date": "2013-08-26T23:23:23.696", 
+                    "id": "text:4da30c90d4bb4005bc0c48f86e575fa4", 
+                    "layout": {
+                        "align": "left"
+                    }, 
+                    "modified_date": "2013-09-15T18:58:49.465", 
+                    "owner_id": 6838, 
+                    "role": "paragraph", 
+                    "size": 312, 
+                    "type": "text", 
+                    "url": "//marquee.by/content/text:4da30c90d4bb4005bc0c48f86e575fa4/"
+                }, 
+                {
+                    "annotations": [
+                        {
+                            "type": "link", 
+                            "url": "http://www.custommade.com/galaxies/by/jenniferkalledfinejewelry"
+                        }, 
+                        {
+                            "content": "\"Galaxies\" bracelet with pink tourmaline by Jennifer Kalled Fine Jewelry. Available on CustomMade.com.", 
+                            "type": "caption"
+                        }
+                    ], 
+                    "content": {
+                        "1280": {
+                            "height": 977, 
+                            "s3_key": "xizOMC9oQTKlNxcJCfXP_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                            "size": 70275, 
+                            "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/xizOMC9oQTKlNxcJCfXP_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                            "width": 1280
+                        }, 
+                        "640": {
+                            "height": 488, 
+                            "s3_key": "7QHAdOpvSOKB8wFKgI7o_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                            "size": 27461, 
+                            "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/7QHAdOpvSOKB8wFKgI7o_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                            "width": 640
+                        }
+                    }, 
+                    "content_md5": "2cdba2cab48d1acca5a5ca5ba379add9", 
+                    "created_date": "2013-08-26T23:23:25.450", 
+                    "id": "image:4b38305f2db74f8db7246556ffe7af36", 
+                    "layout": {
+                        "align": "left", 
+                        "position": "center", 
+                        "size": "medium"
+                    }, 
+                    "link_to": "http://www.custommade.com/galaxies/by/jenniferkalledfinejewelry", 
+                    "modified_date": "2013-09-15T18:58:49.480", 
+                    "original": {
+                        "filename": "galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                        "height": 229, 
+                        "mimetype": "image/jpeg", 
+                        "s3_key": "aPwg7GrxQHKnymr8dDfw_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                        "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/aPwg7GrxQHKnymr8dDfw_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                        "width": 300
+                    }, 
+                    "owner_id": 6838, 
+                    "size": 2, 
+                    "type": "image", 
+                    "url": "//marquee.by/content/image:4b38305f2db74f8db7246556ffe7af36/"
+                }, 
+                {
+                    "annotations": [
+                        {
+                            "end": 61, 
+                            "start": 0, 
+                            "type": "link", 
+                            "url": "http://www.custommade.com/search?mode=projects&q=pink%20tourmaline&place=&range="
+                        }
+                    ], 
+                    "content": "Click here to see more pink tourmaline jewelry on CustomMade!", 
+                    "content_md5": "fed33c54698c571520c9979098410238", 
+                    "created_date": "2013-08-26T23:23:28.032", 
+                    "id": "text:77dfe63f445546988a8616624959d16d", 
+                    "layout": {
+                        "align": "left"
+                    }, 
+                    "modified_date": "2013-09-15T18:58:49.505", 
+                    "owner_id": 6838, 
+                    "role": "paragraph", 
+                    "size": 61, 
+                    "type": "text", 
+                    "url": "//marquee.by/content/text:77dfe63f445546988a8616624959d16d/"
+                }
+            ], 
+            "content_md5": "1c471bff4725051d41f869f0c95aa776", 
+            "cover_content": {
+                "annotations": [], 
+                "content": {
+                    "1280": {
+                        "height": 1262, 
+                        "s3_key": "11AE2ueBRdaVEAiyR9gi_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                        "size": 126251, 
+                        "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/11AE2ueBRdaVEAiyR9gi_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                        "width": 1280
+                    }, 
+                    "640": {
+                        "height": 631, 
+                        "s3_key": "OUy3PUJyQUS38Qd6GnFj_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                        "size": 49249, 
+                        "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/OUy3PUJyQUS38Qd6GnFj_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                        "width": 640
+                    }
+                }, 
+                "content_md5": "81bc99f43e13315b084d004e59aec65f", 
+                "created_date": "2013-09-04T03:16:29.499000Z", 
+                "id": "image:9ea0fb5dbe6344b988d634c3adc73948", 
+                "modified_date": "2013-09-04T03:16:34.091000Z", 
+                "original": {
+                    "filename": "pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                    "height": 570, 
+                    "mimetype": "image/jpeg", 
+                    "s3_key": "VCmw9djSaQ3T5WDhB03g_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                    "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/VCmw9djSaQ3T5WDhB03g_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                    "width": 578
+                }, 
+                "owner_id": 6838, 
+                "size": 2, 
+                "type": "image", 
+                "url": "//marquee.by/content/image:9ea0fb5dbe6344b988d634c3adc73948/"
+            }, 
+            "created_date": "2013-08-26T23:23:28.034", 
+            "description": null, 
+            "eyebrow": null, 
+            "first_published_date": "2011-07-27T15:38:29", 
+            "id": "container:ab384000bd4e4ed097dc7ece1c79c5fb", 
+            "modified_date": "2013-09-15T18:58:49.655", 
+            "old_slug": null, 
+            "old_url": "http://blog.custommade.com/2011/07/custom-pink-tourmaline-jewelry/", 
+            "owner_id": 6838, 
+            "published_date": "2013-09-15T19:11:02.140", 
+            "role": "story", 
+            "size": 8, 
+            "slug": "custom-pink-tourmaline-jewelry", 
+            "tags": [
+                {
+                    "name": "bracelet", 
+                    "slug": "bracelet"
+                }, 
+                {
+                    "name": "Calico June Designs", 
+                    "slug": "calico-june-designs"
+                }, 
+                {
+                    "name": "cuff bracelet", 
+                    "slug": "cuff-bracelet"
+                }, 
+                {
+                    "name": "custom jewelry", 
+                    "slug": "custom-jewelry"
+                }, 
+                {
+                    "name": "custom jewelry design", 
+                    "slug": "custom-jewelry-design"
+                }, 
+                {
+                    "name": "custom made jewelry", 
+                    "slug": "custom-made-jewelry"
+                }, 
+                {
+                    "name": "earrings", 
+                    "slug": "earrings"
+                }, 
+                {
+                    "name": "Jennifer Kalled Fine Jewelry", 
+                    "slug": "jennifer-kalled-fine-jewelry"
+                }, 
+                {
+                    "name": "jewelry", 
+                    "slug": "jewelry"
+                }, 
+                {
+                    "name": "pink tourmaline", 
+                    "slug": "pink-tourmaline"
+                }, 
+                {
+                    "name": "ring", 
+                    "slug": "ring"
+                }, 
+                {
+                    "name": "William Travis Jewelry", 
+                    "slug": "william-travis-jewelry"
+                }
+            ], 
+            "title": "Custom Pink Tourmaline Jewelry", 
+            "title_block": {
+                "display_date": "2011-07-27T15:38:29"
+            }, 
+            "topics": [
+                {
+                    "name": "Custom Inspiration", 
+                    "slug": "custom-inspiration"
+                }, 
+                {
+                    "name": "For Customers", 
+                    "slug": "for-customers"
+                }
+            ], 
+            "type": "container", 
+            "url": "//marquee.by/content/container:ab384000bd4e4ed097dc7ece1c79c5fb/"
+        }
+    ], 
+    "annotations": [], 
+    "byline": "CustomMade", 
+    "categories": [], 
+    "category": "jewelry", 
+    "content": [
+        {
+            "annotations": [
+                {
+                    "end": 68, 
+                    "start": 46, 
+                    "type": "link", 
+                    "url": "http://www.custommade.com/pink-tourmaline-ring/by/williamtravisjewelry"
+                }, 
+                {
+                    "end": 200, 
+                    "start": 183, 
+                    "type": "link", 
+                    "url": "http://www.custommade.com/search?mode=projects&q=pink%20tourmaline&place=&range="
+                }
+            ], 
+            "content": "The unique and striking shape of this ring by William Travis Jewelry and the fun color of the stone caught my and got me wondering, what other jewelry does CustomMade have with this  \u00a0\"pink tourmaline\" gemstone in it?", 
+            "content_md5": "aba4fa6d333665cc2ea63281835fa995", 
+            "created_date": "2013-08-26T23:23:15.237000Z", 
+            "id": "text:0b59c9a9863f44e1b17ec3601fb32d2e", 
+            "layout": {
+                "align": "left"
+            }, 
+            "modified_date": "2013-09-15T18:58:49.445000Z", 
+            "owner_id": 6838, 
+            "role": "paragraph", 
+            "size": 216, 
+            "type": "text", 
+            "url": "//marquee.by/content/text:0b59c9a9863f44e1b17ec3601fb32d2e/"
+        }, 
+        {
+            "annotations": [
+                {
+                    "type": "link", 
+                    "url": "http://www.custommade.com/pink-tourmaline-ring/by/williamtravisjewelry"
+                }, 
+                {
+                    "content": "Pink tourmaline ring by William Travis Jewelry. Available on CustomMade.com.", 
+                    "type": "caption"
+                }
+            ], 
+            "content": {
+                "1280": {
+                    "height": 1258, 
+                    "s3_key": "vCPXWSpLQuaTeXCtXuMU_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                    "size": 123068, 
+                    "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/vCPXWSpLQuaTeXCtXuMU_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                    "width": 1280
+                }, 
+                "640": {
+                    "height": 629, 
+                    "s3_key": "ZpBmaAY1RV2m88jWxjl4_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                    "size": 48933, 
+                    "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/ZpBmaAY1RV2m88jWxjl4_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                    "width": 640
+                }
+            }, 
+            "content_md5": "10d9de60dbf3223247a01c41dcb2cfe6", 
+            "created_date": "2013-08-26T23:23:16.837000Z", 
+            "id": "image:59b410c6c6c04d0e854b888a4136ddd3", 
+            "layout": {
+                "align": "left", 
+                "position": "center", 
+                "size": "medium"
+            }, 
+            "link_to": "http://www.custommade.com/pink-tourmaline-ring/by/williamtravisjewelry", 
+            "modified_date": "2013-09-15T18:58:49.435000Z", 
+            "original": {
+                "filename": "pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                "height": 295, 
+                "mimetype": "image/jpeg", 
+                "s3_key": "swQixedaTiyzehkozKXV_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/swQixedaTiyzehkozKXV_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz-300x295.jpg", 
+                "width": 300
+            }, 
+            "owner_id": 6838, 
+            "size": 2, 
+            "type": "image", 
+            "url": "//marquee.by/content/image:59b410c6c6c04d0e854b888a4136ddd3/"
+        }, 
+        {
+            "annotations": [], 
+            "content": "Here are a few more of my favorite pieces with pink tourmaline...", 
+            "content_md5": "a4fdd32c4edf87fec30f8f8499652c0b", 
+            "created_date": "2013-08-26T23:23:19.441000Z", 
+            "id": "text:7fb5b0c844554de7b1fc7481cfa22799", 
+            "layout": {
+                "align": "left"
+            }, 
+            "modified_date": "2013-09-15T18:58:49.431000Z", 
+            "owner_id": 6838, 
+            "role": "paragraph", 
+            "size": 65, 
+            "type": "text", 
+            "url": "//marquee.by/content/text:7fb5b0c844554de7b1fc7481cfa22799/"
+        }, 
+        {
+            "annotations": [
+                {
+                    "end": 51, 
+                    "start": 6, 
+                    "type": "link", 
+                    "url": "http://www.custommade.com/tourmaline-earrings/by/CalicoJunoDesigns"
+                }
+            ], 
+            "content": "These beautiful earrings are by Calico Juno Designs. The gold wire wrapping is just stunningly well done and I love the combination of the pink tourmaline with the other stone you see which is called mandarine garnet.", 
+            "content_md5": "d3857856a719edf793479ede11d02b18", 
+            "created_date": "2013-08-26T23:23:19.441000Z", 
+            "id": "text:8c407731fc78483fb440b9d9058adaf6", 
+            "layout": {
+                "align": "left"
+            }, 
+            "modified_date": "2013-09-15T18:58:49.450000Z", 
+            "owner_id": 6838, 
+            "role": "paragraph", 
+            "size": 217, 
+            "type": "text", 
+            "url": "//marquee.by/content/text:8c407731fc78483fb440b9d9058adaf6/"
+        }, 
+        {
+            "annotations": [
+                {
+                    "type": "link", 
+                    "url": "http://www.custommade.com/tourmaline-earrings/by/CalicoJunoDesigns"
+                }, 
+                {
+                    "content": "Pink tourmaline and mandarine garnet earrings by Calico Juno Designs. Available on CustomMade.com.", 
+                    "type": "caption"
+                }
+            ], 
+            "content": {
+                "1280": {
+                    "height": 1280, 
+                    "s3_key": "V00OvoHTwyGtHq5ewkMx_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                    "size": 137050, 
+                    "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/V00OvoHTwyGtHq5ewkMx_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                    "width": 1280
+                }, 
+                "640": {
+                    "height": 640, 
+                    "s3_key": "InLyc07AQlOw6M2kS4o9_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                    "size": 53699, 
+                    "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/InLyc07AQlOw6M2kS4o9_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                    "width": 640
+                }
+            }, 
+            "content_md5": "7c8583bd7d4541f2b189cdeedeff96d5", 
+            "created_date": "2013-08-26T23:23:21.113000Z", 
+            "id": "image:b585cc9360b54bdd955f1c9050a85aac", 
+            "layout": {
+                "align": "left", 
+                "position": "center", 
+                "size": "medium"
+            }, 
+            "link_to": "http://www.custommade.com/tourmaline-earrings/by/CalicoJunoDesigns", 
+            "modified_date": "2013-09-15T18:58:49.452000Z", 
+            "original": {
+                "filename": "tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                "height": 300, 
+                "mimetype": "image/jpeg", 
+                "s3_key": "kWe1ftTISYuUDuiRiTIk_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/kWe1ftTISYuUDuiRiTIk_tourmaline-earrings-UDU3OC0xMDQ1Ni40NTM3NQ-300x300.jpg", 
+                "width": 300
+            }, 
+            "owner_id": 6838, 
+            "size": 2, 
+            "type": "image", 
+            "url": "//marquee.by/content/image:b585cc9360b54bdd955f1c9050a85aac/"
+        }, 
+        {
+            "annotations": [
+                {
+                    "end": 91, 
+                    "start": 51, 
+                    "type": "link", 
+                    "url": "http://www.custommade.com/galaxies/by/jenniferkalledfinejewelry"
+                }, 
+                {
+                    "end": 287, 
+                    "start": 230, 
+                    "type": "link", 
+                    "url": "http://www.custommade.com/galaxies/by/jenniferkalledfinejewelry"
+                }
+            ], 
+            "content": "Pink tourmaline is just one of many stones on this bracelet by Jennifer Kalled Fine Jewelry. This bracelet is aptly named \"Galaxies\" as the artist was inspired by looking at the night skies when designing it. This bracelet can be custom made with many different combinations of gemstones depending on your taste.", 
+            "content_md5": "6df0fea0c0bd124b93b9be4d7f7b99f8", 
+            "created_date": "2013-08-26T23:23:23.696000Z", 
+            "id": "text:4da30c90d4bb4005bc0c48f86e575fa4", 
+            "layout": {
+                "align": "left"
+            }, 
+            "modified_date": "2013-09-15T18:58:49.465000Z", 
+            "owner_id": 6838, 
+            "role": "paragraph", 
+            "size": 312, 
+            "type": "text", 
+            "url": "//marquee.by/content/text:4da30c90d4bb4005bc0c48f86e575fa4/"
+        }, 
+        {
+            "annotations": [
+                {
+                    "type": "link", 
+                    "url": "http://www.custommade.com/galaxies/by/jenniferkalledfinejewelry"
+                }, 
+                {
+                    "content": "\"Galaxies\" bracelet with pink tourmaline by Jennifer Kalled Fine Jewelry. Available on CustomMade.com.", 
+                    "type": "caption"
+                }
+            ], 
+            "content": {
+                "1280": {
+                    "height": 977, 
+                    "s3_key": "xizOMC9oQTKlNxcJCfXP_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                    "size": 70275, 
+                    "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/xizOMC9oQTKlNxcJCfXP_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                    "width": 1280
+                }, 
+                "640": {
+                    "height": 488, 
+                    "s3_key": "7QHAdOpvSOKB8wFKgI7o_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                    "size": 27461, 
+                    "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/7QHAdOpvSOKB8wFKgI7o_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                    "width": 640
+                }
+            }, 
+            "content_md5": "2cdba2cab48d1acca5a5ca5ba379add9", 
+            "created_date": "2013-08-26T23:23:25.450000Z", 
+            "id": "image:4b38305f2db74f8db7246556ffe7af36", 
+            "layout": {
+                "align": "left", 
+                "position": "center", 
+                "size": "medium"
+            }, 
+            "link_to": "http://www.custommade.com/galaxies/by/jenniferkalledfinejewelry", 
+            "modified_date": "2013-09-15T18:58:49.480000Z", 
+            "original": {
+                "filename": "galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                "height": 229, 
+                "mimetype": "image/jpeg", 
+                "s3_key": "aPwg7GrxQHKnymr8dDfw_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/aPwg7GrxQHKnymr8dDfw_galaxies-UDU3OC04Mzc0LjQ3Njcw-300x229.jpg", 
+                "width": 300
+            }, 
+            "owner_id": 6838, 
+            "size": 2, 
+            "type": "image", 
+            "url": "//marquee.by/content/image:4b38305f2db74f8db7246556ffe7af36/"
+        }, 
+        {
+            "annotations": [
+                {
+                    "end": 61, 
+                    "start": 0, 
+                    "type": "link", 
+                    "url": "http://www.custommade.com/search?mode=projects&q=pink%20tourmaline&place=&range="
+                }
+            ], 
+            "content": "Click here to see more pink tourmaline jewelry on CustomMade!", 
+            "content_md5": "fed33c54698c571520c9979098410238", 
+            "created_date": "2013-08-26T23:23:28.032000Z", 
+            "id": "text:77dfe63f445546988a8616624959d16d", 
+            "layout": {
+                "align": "left"
+            }, 
+            "modified_date": "2013-09-15T18:58:49.505000Z", 
+            "owner_id": 6838, 
+            "role": "paragraph", 
+            "size": 61, 
+            "type": "text", 
+            "url": "//marquee.by/content/text:77dfe63f445546988a8616624959d16d/"
+        }
+    ], 
+    "content_md5": "1c471bff4725051d41f869f0c95aa776", 
+    "cover_content": {
+        "annotations": [], 
+        "content": {
+            "1280": {
+                "fp_url": "https://www.filepicker.io/api/file/XNysAgO3TZG1BZviCqTK", 
+                "height": 1262, 
+                "s3_key": "11AE2ueBRdaVEAiyR9gi_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                "size": 126251, 
+                "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/11AE2ueBRdaVEAiyR9gi_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                "width": 1280
+            }, 
+            "640": {
+                "fp_url": "https://www.filepicker.io/api/file/W8Va81bfSRClfM8fPslS", 
+                "height": 631, 
+                "s3_key": "OUy3PUJyQUS38Qd6GnFj_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                "size": 49249, 
+                "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/OUy3PUJyQUS38Qd6GnFj_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+                "width": 640
+            }
+        }, 
+        "content_md5": "81bc99f43e13315b084d004e59aec65f", 
+        "created_date": "2013-09-04T03:16:29.499000Z", 
+        "id": "image:9ea0fb5dbe6344b988d634c3adc73948", 
+        "layout": {
+            "align": "left", 
+            "position": "center", 
+            "size": "medium"
+        }, 
+        "modified_date": "2013-09-04T03:16:34.091000Z", 
+        "original": {
+            "filename": "pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+            "fp_url": "https://www.filepicker.io/api/file/zht8ZKgPRs672DP9eBni", 
+            "height": 570, 
+            "mimetype": "image/jpeg", 
+            "s3_key": "VCmw9djSaQ3T5WDhB03g_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+            "url": "http://s3.amazonaws.com/marquee-test-akiaisur2rgicbmpehea/VCmw9djSaQ3T5WDhB03g_pink-tourmaline-ring-UDU3OC05NzgxLjY1MDAz.jpg", 
+            "width": 578
+        }, 
+        "owner_id": 6838, 
+        "size": 2, 
+        "type": "image", 
+        "url": "//marquee.by/content/image:9ea0fb5dbe6344b988d634c3adc73948/"
+    }, 
+    "created_date": "2013-08-26T23:23:28.034000Z", 
+    "description": null, 
+    "eyebrow": null, 
+    "first_published_date": "2011-07-27T15:38:29.000000Z", 
+    "id": "container:ab384000bd4e4ed097dc7ece1c79c5fb", 
+    "modified_date": "2013-09-15T19:11:02.240000Z", 
+    "old_slug": null, 
+    "old_url": "http://blog.custommade.com/2011/07/custom-pink-tourmaline-jewelry/", 
+    "owner_id": 6838, 
+    "published_date": "2013-09-15T19:11:02.140000Z", 
+    "role": "story", 
+    "size": 8, 
+    "slug": "custom-pink-tourmaline-jewelry", 
+    "tags": [
+        {
+            "name": "bracelet", 
+            "slug": "bracelet"
+        }, 
+        {
+            "name": "Calico June Designs", 
+            "slug": "calico-june-designs"
+        }, 
+        {
+            "name": "cuff bracelet", 
+            "slug": "cuff-bracelet"
+        }, 
+        {
+            "name": "custom jewelry", 
+            "slug": "custom-jewelry"
+        }, 
+        {
+            "name": "custom jewelry design", 
+            "slug": "custom-jewelry-design"
+        }, 
+        {
+            "name": "custom made jewelry", 
+            "slug": "custom-made-jewelry"
+        }, 
+        {
+            "name": "earrings", 
+            "slug": "earrings"
+        }, 
+        {
+            "name": "Jennifer Kalled Fine Jewelry", 
+            "slug": "jennifer-kalled-fine-jewelry"
+        }, 
+        {
+            "name": "jewelry", 
+            "slug": "jewelry"
+        }, 
+        {
+            "name": "pink tourmaline", 
+            "slug": "pink-tourmaline"
+        }, 
+        {
+            "name": "ring", 
+            "slug": "ring"
+        }, 
+        {
+            "name": "William Travis Jewelry", 
+            "slug": "william-travis-jewelry"
+        }
+    ], 
+    "title": "Custom Pink Tourmaline Jewelry", 
+    "title_block": {
+        "display_date": "2011-07-27T15:38:29"
+    }, 
+    "type": "container", 
+    "url": "//marquee.by/content/container:ab384000bd4e4ed097dc7ece1c79c5fb/"
+}
