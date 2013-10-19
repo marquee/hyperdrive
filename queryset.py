@@ -119,18 +119,10 @@ class StorySet(object):
 
     def map(self, klass):
         self.fetch()
-
-        res = []
-
-        for s in self._results:
-            if not s:
-                print "WTF"
-            res.append(klass(instanceFromRaw(self._load(s['object']))))
-        return res
-        # return map(
-        #     lambda s: klass(instanceFromRaw(self._load(s['object']))),
-        #     self._results
-        # )
+        return map(
+            lambda s: klass(instanceFromRaw(self._load(s['object']))),
+            self._results
+        )
 
     def _load(self, jobject):
         return json.loads(zlib.decompress(jobject))
