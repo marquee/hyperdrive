@@ -195,19 +195,19 @@ class StorySet(object):
         field_key = "field:{}".format(field)
         histogram_key = "aggregate:{}:{}:count".format(self.setkey, field)
 
-        self.fetch()
-        story_tags_keys = map( lambda s: "{}:{}".format(s,field), self.set_story_keys )
+        if not self._redis.exists(histogram_key):
+            self.fetch()
+            story_tags_keys = map( lambda s: "{}:{}".format(s,field), self.set_story_keys )
         
-        print story_tags_keys
-        self._redis.zunionstore(histogram_key, story_tags_keys)
+            self._redis.zunionstore(histogram_key, story_tags_keys)
 
         field_counts = []
         for f in self._redis.zrevrange(histogram_key, 0, n, withscores=True):
-            field_name = self._redis.hget(field_key, t[0])
+            field_name = self._redis.hget(field_key, f[0])
             print field_name
             field_counts.append({
-                "count" : t[1],
-                "name"  : tag_name,
-                "slug"  : t[0]
+                "count" : f[1],
+                "name"  : field_name,
+                "slug"  : f[0]
             })        
         return field_counts
