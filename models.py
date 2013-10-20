@@ -2,15 +2,16 @@ from content        import Container
 from queryset       import StorySet
 from app import settings
 import json, zlib
-
+import redis
+redis_db = redis.StrictRedis(host='localhost', port=6379)
 
 class ROLES(object):
     STORY       = 'story'
     PUBLICATION = 'publication'
     ISSUE       = 'issue'
     CATEGORY    = 'category'
-import redis
-redis_db = redis.StrictRedis(host='localhost', port=6379)
+    
+
 
 class MContentModel(object):
     """

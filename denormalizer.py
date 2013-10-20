@@ -59,6 +59,7 @@ class Denormalizer(object):
             stories = map(lambda o: o.toJSONSafe(), objs)
             
             for story in stories:
+                print story['slug']
                 yield story
 
             count = len(objs)
@@ -110,7 +111,7 @@ class Denormalizer(object):
         # This is to handle when the slug, tags, categories, etc change
         old_story_slug = self.redis.hget("id_to_slug", story['id'])
         if old_story_slug:
-            self.remove_from_cache(old_story_slug)
+            self.remove(old_story_slug)
 
         first_published_date = parser.parse(story['first_published_date'])
 
