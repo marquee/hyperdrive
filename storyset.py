@@ -9,8 +9,11 @@ import redis
 
 import requests, json, zlib
 
-
-r = redis.StrictRedis(host='localhost', port=6379)
+from app import settings
+if settings.REDIS_URL:
+    r = redis.from_url(settings.REDIS_URL)
+else:
+    r = redis.StrictRedis(host="localhost", port=6379)
 
     
 
@@ -19,10 +22,6 @@ class StorySet(object):
     Public: Interface for accessing stories within redis
 
     """
-
-    set = "stories"
-
-    fields = ["tags", "category"]
 
     def __init__(self, *args, **kwargs):
         # # TODO: figure out what to do with redis connection object
@@ -127,10 +126,6 @@ class StorySet(object):
     def _load(self, jobject):
         return json.loads(zlib.decompress(jobject))
 
-    def _clone(self):
-        # implement
-        pass
-
     @classmethod
     def select(cls, **kwargs):
         OR  = lambda x,y : x | y
@@ -146,7 +141,7 @@ class StorySet(object):
             make_set = lambda p, v : cls(**{param: v})
 
             if len(queryitems) == 2:
-                operator   = queryitems[1]    
+                operator   = queryitems[1]
                 if operator == "in": 
                     keys = map(lambda v: make_set(param,v), value)
                     selected_sets.append(reduce(OR, keys))
@@ -204,7 +199,6 @@ class StorySet(object):
         field_counts = []
         for f in self._redis.zrevrange(histogram_key, 0, n, withscores=True):
             field_name = self._redis.hget(field_key, f[0])
-            print field_name
             field_counts.append({
                 "count" : f[1],
                 "name"  : field_name,
