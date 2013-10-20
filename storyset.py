@@ -71,11 +71,6 @@ class StorySet(object):
         self._results = pipe.execute()
         return self._results
 
-    @classmethod
-    def get(cls, slug):
-        story_key = "story:{}".format(slug)
-        return json.loads(zlib.decompress(r.hgetall(story_key)['object']))
-
     def __or__(self, other):
         union_key = self.setkey + " | " + other.setkey
         self._redis.zunionstore(union_key, [self.setkey, other.setkey], aggregate="max")
@@ -101,6 +96,9 @@ class StorySet(object):
         if isinstance(k, slice):
             self.fetch(start=k.start, stop=k.stop-1)
             return self
+        elif isinstance(k, int):
+            self.fetch(start=k.start, stop=k.stop-1)
+            return self            
         else:
             raise TypeError
 
@@ -108,7 +106,6 @@ class StorySet(object):
         if self._results:
             return len(self._results)
         else:
-            print self.setkey
             return self._redis.zcard(self.setkey)
 
     def __iter__(self):
@@ -168,7 +165,12 @@ class StorySet(object):
             else:
                 # print cls("stories")
                 computation = cls("stories") - subtractand
-        return computation    
+        return computation 
+
+    @classmethod
+    def get(cls, slug):
+        story_key = "story:{}".format(slug)
+        return json.loads(zlib.decompress(r.hgetall(story_key)['object']))
 
     # TODO: IMPLEMENT
     @classmethod
@@ -188,7 +190,7 @@ class StorySet(object):
         """
 
         field_key = "field:{}".format(field)
-        histogram_key = "aggregate:{}:{}:count".format(self.setkey, field)
+        histogram_key = "histogram:{}:{}:count".format(self.setkey, field)
 
         if not self._redis.exists(histogram_key):
             self.fetch()

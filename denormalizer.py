@@ -40,11 +40,11 @@ class Denormalizer(object):
     def __init__(self, publication_short_name, redis, **kwargs):
         self.redis = redis
         self.publication_short_name = publication_short_name
-        self.prep_json_fn         = kwargs.get("prep_json_fn", None)
-        self.post_save_callbacks  = kwargs.get("post_save_callbacks", [])
-        self.finalize_callback    = kwargs.get("finalize_callback", None)
-        self.fields               = kwargs.get("fields", [])
-        self.aggregate            = kwargs.get("aggregate", [])
+        self.prep_json_fn           = kwargs.get("prep_json_fn", None)
+        self.post_save_funcs        = kwargs.get("post_save_callbacks", [])
+        self.finalize_funcs         = kwargs.get("finalize_callback", None)
+        self.fields                 = kwargs.get("fields", [])
+        self.histograms             = kwargs.get("histograms", [])
 
     def fetch_stories(self):
         start = 0
@@ -135,8 +135,8 @@ class Denormalizer(object):
         self.store_tags(story_key, story)
 
         # extra things to do
-        if self.post_save_callbacks:
-            for cb in self.post_save_callbacks:
+        if self.post_save_funcs:
+            for cb in self.post_save_funcs:
                 cb(story_key, story, self.redis)
 
         return True
@@ -151,7 +151,7 @@ class Denormalizer(object):
                 "category:{}:stories".format(category_slug),
                 **{story_key : first_published_date.strftime("%s")}
             )
-            if "category" in self.aggregate:
+            if "category" in self.histograms:
                 self.redis.sadd(
                     "story:{}:category".format(story['slug']),
                     category_slug
@@ -174,9 +174,9 @@ class Denormalizer(object):
                 **{ story_key: first_published_date.strftime("%s")}
             )
 
-            if "tags" in self.aggregate:
+            if "tags" in self.histograms:
                 self.redis.zadd("story:{}:tags".format(story['slug']), 1, tag['slug'])
-                self.redis.zincrby("aggregate:stories:tags:count", tag['slug'], 1)
+                self.redis.zincrby("histogram:stories:tags:count", tag['slug'], 1)
 
 
     def remove(self, story_slug):
@@ -203,7 +203,7 @@ class Denormalizer(object):
                 "category:{}:stories".format(category_slug),
                 story_key
             )
-            if "category" in self.aggregate:
+            if "category" in self.histograms:
                 self.redis.srem(
                     "story:{}:category".format(story['slug']),
                     category_slug
@@ -214,9 +214,9 @@ class Denormalizer(object):
                     "tags:{}:stories".format(tag['slug']),
                     story_key
                 )
-                if "tag" in self.aggregate:
+                if "tag" in self.histograms:
                     self.redis.zrem("story:{}:tags".format(story['slug']), 1, tag['slug'])
-                    self.redis.zincrby("aggregate:stories:tags:count", tag['slug'], -1)
+                    self.redis.zincrby("histogram:stories:tags:count", tag['slug'], -1)
 
             self.redis.delete("story:{}:tags".format(story_slug))
 
@@ -227,5 +227,5 @@ class Denormalizer(object):
 
     def finalize(self):
         print "finalizing and calling callbacks"
-        if self.finalize_callback:
+        if self.finalize_funcs:
             self.finalize_callback(self.redis)
