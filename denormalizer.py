@@ -44,6 +44,7 @@ class Denormalizer(object):
         self.post_save_callbacks  = kwargs.get("post_save_callbacks", [])
         self.finalize_callback    = kwargs.get("finalize_callback", None)
         self.fields               = kwargs.get("fields", [])
+        self.aggregate            = kwargs.get("aggregate", [])
 
     def fetch_stories(self):
         start = 0
@@ -98,15 +99,13 @@ class Denormalizer(object):
         self.finalize()
 
     def store_story(self, story):
-
-        story_slug           = story['slug']
+        story_slug = story['slug']
 
         story_key = "story:{}".format(story_slug)
         try:
             first_published_date = parser.parse(story['first_published_date'])
         except Exception as e:
-            print "EXCEPTION", e
-            return            
+            return False
 
         # This is to handle when the slug, tags, categories, etc change
         old_story_slug = self.redis.hget("id_to_slug", story['id'])
@@ -139,6 +138,7 @@ class Denormalizer(object):
             for cb in self.post_save_callbacks:
                 cb(story_key, story, self.redis)
 
+        return True
 
     def store_category(self, story_key, story):
 
@@ -150,10 +150,11 @@ class Denormalizer(object):
                 "category:{}:stories".format(category_slug),
                 **{story_key : first_published_date.strftime("%s")}
             )
-            self.redis.sadd(
-                "story:{}:category".format(story['slug']),
-                category_slug
-            )
+            if "category" in self.aggregate:
+                self.redis.sadd(
+                    "story:{}:category".format(story['slug']),
+                    category_slug
+                )
 
     def store_tags(self, story_key, story):
         tags = story.get('tags', [])
@@ -172,9 +173,9 @@ class Denormalizer(object):
                 **{ story_key: first_published_date.strftime("%s")}
             )
 
-            self.redis.zadd("story:{}:tags".format(story['slug']), 1, tag['slug'])
-
-            self.redis.zincrby("aggregate:stories:tags:count", tag['slug'], 1)
+            if "tags" in self.aggregate:
+                self.redis.zadd("story:{}:tags".format(story['slug']), 1, tag['slug'])
+                self.redis.zincrby("aggregate:stories:tags:count", tag['slug'], 1)
 
 
     def remove(self, story_slug):
@@ -201,14 +202,20 @@ class Denormalizer(object):
                 "category:{}:stories".format(category_slug),
                 story_key
             )
-            # if cardinality of category set is zero, remove from categories hash
+            if "category" in self.aggregate:
+                self.redis.srem(
+                    "story:{}:category".format(story['slug']),
+                    category_slug
+                )
         if tags:
             for tag in tags:
                 self.redis.zrem(
                     "tags:{}:stories".format(tag['slug']),
                     story_key
                 )
-                # if cardinality of tag set is, remove it from tag hash
+                if "tag" in self.aggregate:
+                    self.redis.zrem("story:{}:tags".format(story['slug']), 1, tag['slug'])
+                    self.redis.zincrby("aggregate:stories:tags:count", tag['slug'], -1)
 
             self.redis.delete("story:{}:tags".format(story_slug))
 
