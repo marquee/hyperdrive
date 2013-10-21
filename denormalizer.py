@@ -59,7 +59,6 @@ class Denormalizer(object):
             stories = map(lambda o: o.toJSONSafe(), objs)
             
             for story in stories:
-                print story['slug']
                 yield story
 
             count = len(objs)
@@ -81,7 +80,7 @@ class Denormalizer(object):
         )
 
     def _fetch_categories(self):
-        response = requests.get('http://%s.marquee.by/api/categories/' % "custommade")
+        response = requests.get('http://%s.marquee.by/api/categories/' % self.publication_short_name)
         categories = json.loads(response.content)
 
         pipe = self.redis.pipeline()
@@ -142,7 +141,6 @@ class Denormalizer(object):
         return True
 
     def store_category(self, story_key, story):
-
         first_published_date = parser.parse(story['first_published_date'])
 
         category_slug = story.get('category', None)
