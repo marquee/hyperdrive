@@ -1,5 +1,5 @@
 from content        import Container
-from queryset       import StorySet
+from storyset       import StorySet
 from app import settings
 import json, zlib
 import redis
@@ -19,8 +19,8 @@ class MContentModel(object):
     accessors directly to the Container instance as well as some helper
     methods.
     """
-    # def __init__(self, container):
-    #     self._container = container
+    def __init__(self, container):
+        self._container = container
 
     def __getattr__(self, attr_name):
         return getattr(self._container, attr_name)
@@ -186,23 +186,21 @@ class Story(MContentModel, HasCoverContent):
     @property
     def link(self):
         category = self.get('category', 'uncategorized')
-        return '/{0}/{1}/'.format(category, self.slug)
+        return '/{1}/'.format(category, self.slug)
 
 class Publication(MContentModel):
     """
     Public: A model that corresponds to a Container with `role='publication'`.
     """
 
-    def __init__(self, pub_short_name=None):
-        
-        if not pub_short_name:
-            pub_key = "publication:{}".format(settings.PUBLICATION_SHORT_NAME)
+    def __init__(self):        
+        pub_key = "publication:{}".format(settings.PUBLICATION_SHORT_NAME)
 
-            publication_container = Container(json.loads(
-                redis_db.hgetall(pub_key)['object']
-            ))
-            print publication_container
-            self._container = publication_container
+        publication_container = Container(json.loads(
+            redis_db.hgetall(pub_key)['object']
+        ))
+
+        self._container = publication_container
 
     def issues(self, *args, **kwargs):
         """
@@ -220,56 +218,30 @@ class Publication(MContentModel):
 
         Returns an (iterable, lazy) APIQuery of Story objects.
         """
-        query = {}
 
-        if len(args) > 0:
-            query.update(args[0])
+        raise NotImplementedError
 
-        query.update(kwargs)
-        query.update({
-            'role'                      : ROLES.ISSUE,
-        })
+    def categories(self):
+        cs = []
+        for cat,val in redis_db.hgetall("categories").items():
+            cs.append(json.loads(val))
+        return cs
 
-        # Construct the APIQuery and return the results as Issue objects.
-        issues = content_objects.filter(
-            type=Container, **query
-        ).mapOnExecute(Issue)
+    def get_category(self, slug):
+        try:
+            return json.loads(redis_db.hget("categories", slug))
+        except:
+            return None
 
-        return issues
-
-
-    def stories(self, *args, **kwargs):
+    def stories(self, **kwargs):
         """
-        Public: load the Stories that belong to the Publication instance from
-        the API, filtered by the specified arguments.
+        Public: Convenience method to select a storyset.
 
-        args    - (optional) A single dict to use for the query, allowing for
-                    query keys that cannot be used as keyword arguments.
-        kwargs  - (optional) Keyword arguments that are added to the query,
-                    superseding any query specified as a positional argument.
+        kwargs  - (optional) Keyword arguments passed to the StorySet.select method
 
-        Note: the query is updated to filter by role and to only include
-        published stories.
-
-        Returns an (iterable, lazy) APIQuery of Story objects.
+        Returns an iterable StorySet object.
         """
-        query = {}
-
-        if len(args) > 0:
-            query.update(args[0])
-
-        query.update(kwargs)
-        query.update({
-            'role'                      : ROLES.STORY,
-            'published_date__exists'    : True,
-        })
-
-        # Construct the APIQuery and return the results as Story objects.
-        stories = content_objects.filter(
-                type=Container, **query
-        ).mapOnExecute(Story).sort('-published_date')
-
-        return stories
+        return StorySet.select(**kwargs)
 
 
 
