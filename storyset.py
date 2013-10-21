@@ -47,13 +47,15 @@ class StorySet(object):
         elif category:
             self.setkey = "category:{}:stories".format(category)
 
+        from .models import Story
+        self.klass = Story
 
         if not self.setkey:
             raise Exception("Set does not exist.")
 
     def __repr__(self):
         self.fetch()
-        return repr(self._results)
+        return repr(self.set_story_keys)
 
     def fetch(self, start=None, stop=None,**kwargs):
 
@@ -103,6 +105,7 @@ class StorySet(object):
             raise TypeError
 
     def __len__(self):
+        self.fetch()
         if self._results:
             return len(self._results)
         else:
@@ -110,21 +113,19 @@ class StorySet(object):
 
     def __iter__(self):
         self.fetch()
+
         for s in self._results:
-            yield s
+            yield self.klass(self._load(s))
 
-    def map(self, klass):
-        self.fetch()
-        return map(
-            lambda s: klass(instanceFromRaw(self._load(s['object']))),
-            self._results
-        )
-
-    def _load(self, jobject):
-        return json.loads(zlib.decompress(jobject))
+    def _load(self, s):
+        # what.the.fuck
+        return instanceFromRaw(json.loads(zlib.decompress(s['object'])))
 
     @classmethod
     def select(cls, **kwargs):
+        if len(kwargs) == 0:
+            return cls.all()
+
         OR  = lambda x,y : x | y
         AND = lambda x,y : x & y
 

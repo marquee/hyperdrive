@@ -85,6 +85,7 @@ class Denormalizer(object):
 
         pipe = self.redis.pipeline()
         for c in categories:
+            c.update({'slug': c['_id'].split(":")[1]})
             pipe.hset("categories", c['_id'].split(":")[1], json.dumps(c))
             pipe.hset("field:category", c['_id'].split(":")[1], c['title'])
 
