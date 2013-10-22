@@ -1,9 +1,10 @@
 from content        import Container
 from storyset       import StorySet
+from .main          import redisdb as redis_db
 from app import settings
 import json, zlib
 import redis
-redis_db = redis.StrictRedis(host='localhost', port=6379)
+
 
 class ROLES(object):
     STORY       = 'story'
