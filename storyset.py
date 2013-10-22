@@ -1,19 +1,18 @@
+from app            import settings
 from content        import ContentObjects, Container
 from content.models import instanceFromRaw
+from .main          import redisdb
 
 from datetime       import datetime, timedelta
 
 import json
 import logging
 import redis
+import requests
+import zlib
 
-import requests, json, zlib
 
-from app import settings
-if settings.REDIS_URL:
-    r = redis.from_url(settings.REDIS_URL)
-else:
-    r = redis.StrictRedis(host="localhost", port=6379)
+
 
     
 
@@ -26,7 +25,7 @@ class StorySet(object):
     def __init__(self, *args, **kwargs):
         # # TODO: figure out what to do with redis connection object
 
-        self._redis = r
+        self._redis = redisdb
         self._results = None
 
         if len(args) > 1 or len(kwargs) > 1:

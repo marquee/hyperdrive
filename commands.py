@@ -3,15 +3,10 @@ from app 			    import settings
 from flask 				import current_app
 from flask.ext.script   import Manager
 
+from .denormalizer import Denormalizer
+from .main		   import redisdb
+
 import time
-import redis
-
-from hyperdrive.denormalizer import Denormalizer
-
-if settings.REDIS_URL:
-    db = redis.from_url(settings.REDIS_URL)
-else:
-    db = redis.StrictRedis(host="localhost", port=6379)
 
 manager = Manager(usage="yo")
 
@@ -21,10 +16,10 @@ def sync_content():
 	print "Initiating hyperdrive sync for %s..." % settings.PUBLICATION_SHORT_NAME
 	print "<movie reference>"
 
-	db.flushdb()
+	redisdb.flushdb()
 	denorm = Denormalizer(
     	settings.PUBLICATION_SHORT_NAME,
-    	db
+    	redisdb
 	)
 
 	denorm.sync()
@@ -40,9 +35,9 @@ def sync_content():
 def stats():
 	print "Content Stats"
 	print "---------------------------------------"
-	print "Memory:", db.info()['used_memory_human']
-	print "Stories:", db.zcard("stories")
-	print "Categories:", len(db.hgetall("categories"))
-	print "Tags:", len(db.hgetall("field:tags"))
+	print "Memory:", redisdb.info()['used_memory_human']
+	print "Stories:", redisdb.zcard("stories")
+	print "Categories:", len(redisdb.hgetall("categories"))
+	print "Tags:", len(redisdb.hgetall("field:tags"))
 	
 	
