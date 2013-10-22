@@ -221,7 +221,7 @@ class Denormalizer(object):
 
 
         self.redis.delete(story_key)
-        self.redis.zrem("stories", story['slug'])
+        self.redis.zrem("stories", story_key)
         return True
 
     def finalize(self):
