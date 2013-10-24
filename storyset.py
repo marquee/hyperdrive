@@ -13,6 +13,19 @@ import zlib
 
 
 
+def load(s):
+    COMPRESS = getattr(settings, HYPERDRIVE_COMPRESS, False)
+    if COMPRESS:
+        return json.loads(zlib.decompress(s))
+    else:
+        return json.loads(s)
+
+
+def dump(s):
+    if settings.HYPERDRIVE_COMPRESS:
+        return zlib.compress(json.dumps(s), 9)
+    else:
+        return json.dumps(s)
 
     
 
@@ -118,7 +131,7 @@ class StorySet(object):
 
     def _load(self, s):
         # what.the.fuck
-        return instanceFromRaw(json.loads(zlib.decompress(s['object'])))
+        return instanceFromRaw(load(s['object']))
 
     @classmethod
     def select(cls, **kwargs):
@@ -170,7 +183,7 @@ class StorySet(object):
     @classmethod
     def get(cls, slug):
         story_key = "story:{}".format(slug)
-        return json.loads(zlib.decompress(r.hgetall(story_key)['object']))
+        return load(r.hgetall(story_key)['object']))
 
     # TODO: IMPLEMENT
     @classmethod

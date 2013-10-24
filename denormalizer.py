@@ -6,6 +6,8 @@ import requests, json, zlib
 # TODO THIS IS BAD
 from app.data_loader  import content_objects
 
+from .storyset import load, dump
+
 class Denormalizer(object):
     """
     Public: A class to help denormalize the data
@@ -128,7 +130,7 @@ class Denormalizer(object):
         
         self.redis.hmset(story_key, {
             'stored_at' : int(first_published_date.strftime("%s")),
-            'object'    : zlib.compress(json.dumps(story), 9)
+            'object'    : dump(story)
         })
 
         self.store_category(story_key, story)
@@ -190,7 +192,7 @@ class Denormalizer(object):
         if not story_hash:
             return False
 
-        story   = json.loads(zlib.decompress(story_hash['object']))
+        story   = load(story_hash['object'])
 
         story_slug           = story['slug']
         first_published_date = parser.parse(story['first_published_date'])

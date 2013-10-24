@@ -5,16 +5,26 @@ It is recommended you use the marquee runtime's [data loader](https://github.com
 
 ## Usage
 
-In `app/settings.py`:
+To enable hyperdrive, add the following to your `.env`:
 
-    HYPERDRIVE = True
+    HYPERDRIVE=true
     
-To do an initial sync:
+This will add a webhook reciever view as well as hyperdrive managment commands. 
+
+If you have a lot of content with limited redis space, in your settings:
+
+    HYPERDRIVE_COMPRESS = True
+    
+By default it is set to `False`. 
+    
+To do an initial content sync:
 
     python manage.py hyperdrive sync_content
+    
+    
+This will automatically index all of your content by categories, tags,  and issues, if the data is available.
 
-This will load content api data into redis and you should be able to start filling in your views.
-
+Now you should be able to start filling in your views.
 
 
 ## Models
@@ -22,12 +32,13 @@ This will load content api data into redis and you should be able to start filli
 TODO
 
 
+
 ## StorySet
 StorySet is an interface to retrieve story objects stored in redis sorted sets. At the moment, stories are sorted by `first_published_date` but there will be a way to specify sorting in the future.
 
 ### Methods for StorySet
 
-**select**
+#### select
 
 `StorySet.select(**kwargs)`
 
@@ -37,22 +48,17 @@ This example selects 10 most recent stories in the history category that aren't 
 
 	StorySet.select(tags__nin=["medieval", "renaissance"], category="history")[0:10]
 
-**histogram**
+#### histogram
 
 `self.histogram(field, n=10)`
 
 Instance method that returns a list of dictionaries with frequencies.
+
     StorySet().histogram("tags", n=10)
     # => [{'name':'US History','slug':'us-history', {'count':30}, …
 
-**map**
 
-`self.map(model_class)`
-
-Instance method that wraps the stories in the set to model class. 
-*TODO:* Need to rethink this. Slightly of awkward/crappy. 
-
-**all**
+#### all
 
 `StorySet.all()`
 
@@ -60,18 +66,18 @@ Class method that returns a set with all stories.
 
 ### Available operators:
 
-**ne**
+#### ne
 
 Selects sets not equal to the value
 
-**in**
+#### in
 
 Selects sets in a given list
 Example:
 
 	StorySet.select(tags__in=["action", "comedy"]) 
 
-**nin**
+#### nin
 
 Excludes sets in the given list from the set selection.
 
@@ -93,7 +99,7 @@ Example:
 * `redis` - the redis object
 * `prep_json_funcs` - (optional) A list of functions that will be called before the json is stored. Will be passed the json object.
 * `post_save_funcs` - (optional) A list of functions to call after a story is saved. They will be passed the story key, story object and the `redis` object. 
-* `finalalize_funcs` - (optional) A list of functions to call during the finalization step. They will be passed the `redis` object.
+* `finalize_funcs` - (optional) A list of functions to call during the finalization step. They will be passed the `redis` object.
 
 **Example:**
 If you know you'll have to do query story objects by `category` or `byline`, then set them to initialize the denormalizer like this:
