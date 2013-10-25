@@ -182,8 +182,10 @@ class Story(MContentModel, HasCoverContent):
 
     @property
     def link(self):
-        category = self.get('category', 'uncategorized')
-        return '/{1}/'.format(category, self.slug)
+        try:
+            return settings.STORY_URL(self)
+        except AttributeError:
+            return "/{1}/".format(self.slug)
 
 class Publication(MContentModel):
     """
@@ -229,16 +231,15 @@ class Publication(MContentModel):
 
     def categories(self):
         cs = []
-        for cat,val in redis_db.hgetall("categories").items():
+        for cat,val in redis_db.hgetall("category_content").items():
             cs.append(json.loads(val))
         return cs
 
     def get_category(self, slug):
         try:
-            return json.loads(redis_db.hget("categories", slug))
+            return json.loads(redis_db.hget("category_content", slug))
         except:
             return None
-
 
     def get_issue(self, slug):
         obj = json.loads(redis_db.hget("issue_content", slug))
