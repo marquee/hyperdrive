@@ -93,9 +93,25 @@ class Denormalizer(object):
 
         pipe.execute()        
 
+    def _fetch_issues(self):
+        issues = content_objects.filter(
+            role="issue",
+            type="container"
+        ).execute()
+
+        for i in issues:
+            print i
+
+        pipe = self.redis.pipeline()
+        for issue in issues:
+            pipe.hset("issues", issue['slug'], issue.toJSON())
+
+        pipe.execute()                
+
     def sync(self):
         self._fetch_publication()
         self._fetch_categories()
+        self._fetch_issues()
         for story in self.fetch_stories():
             self.store_story(story)
 
