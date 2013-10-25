@@ -56,6 +56,8 @@ class Denormalizer(object):
             objs = content_objects.filter({
               'type' : 'container',
               'role' : 'story',
+              'first_published_date__exists' : True,
+              '_is_deleted' : False
             }).offset(start).limit(100).execute()
 
             stories = map(lambda o: o.toJSONSafe(), objs)
