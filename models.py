@@ -117,11 +117,7 @@ class Issue(MContentModel, HasCoverContent):
         every story in an issue.
         """
 
-        stories = content_objects.filter(
-            issue_content=self.id
-        ).mapOnExecute(Story)
-
-        return stories
+        return StorySet.select(issue=self.slug)
 
 class Category(object):
 
@@ -220,7 +216,16 @@ class Publication(MContentModel):
         Returns an (iterable, lazy) APIQuery of Story objects.
         """
 
-        raise NotImplementedError
+        issue_content_map = redis_db.hgetall("issue_content")
+
+        issue_keys = redis_db.zrevrange("issues", 0, -1)
+
+        issues =  [ 
+            issue_content_map[issue_key.split(":")[-1]]  for issue_key in issue_keys   
+        ]
+
+        issue_wrapper = lambda issue: Issue(Container(json.loads(issue)))
+        return map(issue_wrapper, issues)
 
     def categories(self):
         cs = []
@@ -233,6 +238,12 @@ class Publication(MContentModel):
             return json.loads(redis_db.hget("categories", slug))
         except:
             return None
+
+
+    def get_issue(self, slug):
+        obj = json.loads(redis_db.hget("issue_content", slug))
+        issue_container = Container(obj)
+        return Issue(issue_container)
 
     def stories(self, **kwargs):
         """
