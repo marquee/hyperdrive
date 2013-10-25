@@ -14,7 +14,7 @@ import zlib
 
 
 def load(s):
-    COMPRESS = getattr(settings, HYPERDRIVE_COMPRESS, False)
+    COMPRESS = getattr(settings, "HYPERDRIVE_COMPRESS", False)
     if COMPRESS:
         return json.loads(zlib.decompress(s))
     else:
@@ -22,7 +22,8 @@ def load(s):
 
 
 def dump(s):
-    if settings.HYPERDRIVE_COMPRESS:
+    COMPRESS = getattr(settings, "HYPERDRIVE_COMPRESS", False)
+    if COMPRESS:
         return zlib.compress(json.dumps(s), 9)
     else:
         return json.dumps(s)
@@ -183,7 +184,8 @@ class StorySet(object):
     @classmethod
     def get(cls, slug):
         story_key = "story:{}".format(slug)
-        return load(r.hgetall(story_key)['object']))
+        story_obj = r.hgetall(story_key)['object']
+        return load(story_obj)
 
     # TODO: IMPLEMENT
     @classmethod
