@@ -88,7 +88,7 @@ class Denormalizer(object):
         pipe = self.redis.pipeline()
         for c in categories:
             c.update({'slug': c['_id'].split(":")[1]})
-            pipe.hset("categories", c['_id'].split(":")[1], json.dumps(c))
+            pipe.hset("category_content", c['_id'].split(":")[1], json.dumps(c))
             pipe.hset("field:category", c['_id'].split(":")[1], c['title'])
 
         pipe.execute()        
@@ -104,7 +104,13 @@ class Denormalizer(object):
 
         pipe = self.redis.pipeline()
         for issue in issues:
-            pipe.hset("issues", issue['slug'], issue.toJSON())
+            first_published_date = issue['first_published_date']
+
+            issue_key = "issue:{}".format(issue.slug)
+            pipe.zadd("issues", **{ 
+                issue_key : int(issue['issue_number'])
+            })
+            pipe.hset("issue_content", issue.slug, issue.toJSON())
 
         pipe.execute()                
 
@@ -201,7 +207,7 @@ class Denormalizer(object):
         if issue_content:
             first_published_date = parser.parse(story['first_published_date'])
 
-            issue_key = "issue_content:{}:stories".format(issue_content['slug'])
+            issue_key = "issue:{}:stories".format(issue_content['slug'])
             self.redis.zadd(issue_key, **{story_key : first_published_date.strftime("%s")})
 
 
