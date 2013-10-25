@@ -54,14 +54,14 @@ class StorySet(object):
         # this should be based on the mapping
         tag           = kwargs.pop("tags", None)
         category      = kwargs.pop("category", None)
-        issue_content = kwargs.pop("issue_content", None)
+        issue         = kwargs.pop("issue", None)
 
         if tag:
             self.setkey = "tags:{}:stories".format(tag)
         elif category:
             self.setkey = "category:{}:stories".format(category)
-        elif issue_content:
-            self.setkey = "issue_content:{}:stories".format(issue_content)
+        elif issue:
+            self.setkey = "issue:{}:stories".format(issue)
 
         from .models import Story
         self.klass = Story
@@ -74,15 +74,19 @@ class StorySet(object):
         return repr(self.set_story_keys)
 
     def fetch(self, start=None, stop=None,**kwargs):
-
         # TODO: think this through more
         if self._results:
-            return self._results
+            if start != None and stop != None:
+                print "STARTSTOP", start, stop, len(self._results[start:stop+1])
+                return self._results[start:stop+1]
+            else:
+                return self._results
 
         if not start and not stop:
             start = 0
             stop  = -1
 
+        print start, stop
         self.set_story_keys = self._redis.zrevrange(self.setkey, start, stop)
         pipe = self._redis.pipeline()
         [pipe.hgetall(key) for key in self.set_story_keys]
@@ -111,31 +115,41 @@ class StorySet(object):
         return StorySet(newkey)
 
     def __getitem__(self, k):
+        start = k.start
+        stop  = k.stop
         if isinstance(k, slice):
-            self.fetch(start=k.start, stop=k.stop-1)
+
+            if k.start is None:
+                start = 0
+
+            if k.stop is None:
+                stop = 0
+
+            self.fetch(start=start, stop=stop-1)
             return self
         elif isinstance(k, int):
-            self.fetch(start=k.start, stop=k.stop-1)
-            return self            
+            stories = selyf.fetch(start=k, stop=k)
+            if stories:
+                return self._load(stories[0]['object'])
+            else:
+                return []
         else:
             raise TypeError
 
     def __len__(self):
         self.fetch()
-        if self._results:
-            return len(self._results)
-        else:
-            return self._redis.zcard(self.setkey)
+        return len(self._results)
+        # return self._redis.zcard(self.setkey)
 
     def __iter__(self):
         self.fetch()
 
         for s in self._results:
-            yield self.klass(self._load(s))
+            yield self.klass(self._load(s['object']))
 
     def _load(self, s):
         # what.the.fuck
-        return instanceFromRaw(load(s['object']))
+        return instanceFromRaw(load(s))
 
     @classmethod
     def select(cls, **kwargs):
@@ -187,7 +201,7 @@ class StorySet(object):
     @classmethod
     def get(cls, slug):
         story_key = "story:{}".format(slug)
-        story_obj = r.hgetall(story_key)['object']
+        story_obj = redisdb.hgetall(story_key)['object']
         return load(story_obj)
 
     # TODO: IMPLEMENT
