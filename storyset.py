@@ -52,13 +52,16 @@ class StorySet(object):
                 self.setkey = args[0]
 
         # this should be based on the mapping
-        tag      = kwargs.pop("tags", None)
-        category = kwargs.pop("category", None)
+        tag           = kwargs.pop("tags", None)
+        category      = kwargs.pop("category", None)
+        issue_content = kwargs.pop("issue_content", None)
 
         if tag:
             self.setkey = "tags:{}:stories".format(tag)
         elif category:
             self.setkey = "category:{}:stories".format(category)
+        elif issue_content:
+            self.setkey = "issue_content:{}:stories".format(issue_content)
 
         from .models import Story
         self.klass = Story
