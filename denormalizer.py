@@ -201,7 +201,7 @@ class Denormalizer(object):
             )
 
             if "tags" in self.histograms:
-                self.redis.zadd("story:{}:tags".format(story['slug']), 1, tag['slug'])
+                self.redis.zadd("story:{}:tags".format(story['slug']), **{tag['slug']:1})
                 self.redis.zincrby("histogram:stories:tags:count", tag['slug'], 1)
 
     def index_by_issue(self, story_key, story):
