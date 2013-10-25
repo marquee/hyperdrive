@@ -133,8 +133,9 @@ class Denormalizer(object):
             'object'    : dump(story)
         })
 
-        self.store_category(story_key, story)
-        self.store_tags(story_key, story)
+        self.index_by_category(story_key, story)
+        self.index_by_tags(story_key, story)
+        self.index_by_issue(story_key, story)
 
         # extra things to do
         if self.post_save_funcs:
@@ -143,7 +144,7 @@ class Denormalizer(object):
 
         return True
 
-    def store_category(self, story_key, story):
+    def index_by_category(self, story_key, story):
         first_published_date = parser.parse(story['first_published_date'])
 
         category_slug = story.get('category', None)
@@ -158,7 +159,7 @@ class Denormalizer(object):
                     category_slug
                 )
 
-    def store_tags(self, story_key, story):
+    def index_by_tags(self, story_key, story):
         tags = story.get('tags', [])
         first_published_date = parser.parse(story['first_published_date'])
 
@@ -178,6 +179,14 @@ class Denormalizer(object):
             if "tags" in self.histograms:
                 self.redis.zadd("story:{}:tags".format(story['slug']), 1, tag['slug'])
                 self.redis.zincrby("histogram:stories:tags:count", tag['slug'], 1)
+
+    def index_by_issue(self, story_key, story):
+        issue_content = story.get("issue_content", None)
+        if issue_content:
+            first_published_date = parser.parse(story['first_published_date'])
+
+            issue_key = "issue_content:{}:stories".format(issue_content['slug'])
+            self.redis.zadd(issue_key, **{story_key : first_published_date.strftime("%s")})
 
 
     def remove(self, story_slug):
