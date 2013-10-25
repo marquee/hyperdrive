@@ -198,6 +198,9 @@ class StorySet(object):
                 computation = cls("stories") - subtractand
         return computation 
 
+    def count(self):
+        return self._redis.zcard(self.setkey)
+
     @classmethod
     def get(cls, slug):
         story_key = "story:{}".format(slug)
