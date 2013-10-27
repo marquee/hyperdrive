@@ -43,8 +43,8 @@ class Denormalizer(object):
         self.redis = redis
         self.publication_short_name = publication_short_name
         self.prep_json_fn           = kwargs.get("prep_json_fn", None)
-        self.post_save_funcs        = kwargs.get("post_save_callbacks", [])
-        self.finalize_funcs         = kwargs.get("finalize_callback", None)
+        self.post_save_funcs        = kwargs.get("post_save_funcs", [])
+        self.finalize_fn            = kwargs.get("finalize_fn", None)
         self.fields                 = kwargs.get("fields", [])
         self.histograms             = kwargs.get("histograms", [])
 
@@ -261,5 +261,5 @@ class Denormalizer(object):
 
     def finalize(self):
         print "finalizing and calling callbacks"
-        if self.finalize_funcs:
-            self.finalize_callback(self.redis)
+        if self.finalize_fn:
+            self.finalize_fn(self.redis)
