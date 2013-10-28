@@ -231,6 +231,7 @@ class Denormalizer(object):
         first_published_date = parser.parse(story['first_published_date'])
         category_slug        = story.get('category')
         tags                 = story.get('tags', [])
+        issue_content        = story.get("issue_content", None)
 
         if category_slug:
             self.redis.zrem(
@@ -254,6 +255,9 @@ class Denormalizer(object):
 
             self.redis.delete("story:{}:tags".format(story_slug))
 
+        if issue_content:
+            issue_key = "issue:{}:stories".format(issue_content['slug'])
+            self.redis.zrem(issue_key, story_key)
 
         self.redis.delete(story_key)
         self.redis.zrem("stories", story_key)
