@@ -205,7 +205,8 @@ class StorySet(object):
     def get(cls, slug):
         story_key = "story:{}".format(slug)
         story_obj = redisdb.hgetall(story_key)['object']
-        return load(story_obj)
+        from .models import Story
+        return Story(Container(load(story_obj)))
 
     # TODO: IMPLEMENT
     @classmethod
