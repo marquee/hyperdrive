@@ -147,6 +147,23 @@ class StorySet(object):
         for s in self._results:
             yield self.klass(self._load(s['object']))
 
+
+    def date_slice(self, start, end, offset=None, limit=None):
+        self.set_story_keys = self._redis.zrangebyscore(
+            self.setkey,
+            start.strftime("%s"),
+            end.strftime("%s"),
+            start=offset,
+            num=limit
+        )
+
+        pipe = self._redis.pipeline()
+        [pipe.hgetall(key) for key in self.set_story_keys]
+        self._results = pipe.execute()
+
+        return self
+
+
     def _load(self, s):
         # what.the.fuck
         return instanceFromRaw(load(s))
