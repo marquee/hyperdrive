@@ -221,7 +221,12 @@ class StorySet(object):
     @classmethod
     def get(cls, slug):
         story_key = "story:{}".format(slug)
-        story_obj = redisdb.hgetall(story_key)['object']
+        story_hash = redisdb.hgetall(story_key)
+        if not story_hash:
+            return None
+
+        story_obj = story_hash['object']
+            
         from .models import Story
         return Story(Container(load(story_obj)))
 
