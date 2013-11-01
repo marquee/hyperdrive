@@ -11,7 +11,7 @@ class ROLES(object):
     PUBLICATION = 'publication'
     ISSUE       = 'issue'
     CATEGORY    = 'category'
-    
+
 
 
 class MContentModel(object):
@@ -27,7 +27,7 @@ class MContentModel(object):
         return getattr(self._container, attr_name)
 
     def __getattr__(self, attr_name):
-        return getattr(self._container, attr_name)        
+        return getattr(self._container, attr_name)
 
     @property
     def link(self):
@@ -163,7 +163,7 @@ class Story(MContentModel, HasCoverContent):
         """
         keywords = ''
         for t in getattr(self, "tags", []):
-            keywords += "{0} ".format(t['name'])
+            keywords += u"{0} ".format(t['name'])
         keywords.strip()
         return keywords
 
@@ -192,7 +192,7 @@ class Publication(MContentModel):
     Public: A model that corresponds to a Container with `role='publication'`.
     """
 
-    def __init__(self):        
+    def __init__(self):
         pub_key = "publication:{}".format(settings.PUBLICATION_SHORT_NAME)
 
         publication_container = Container(json.loads(
@@ -222,8 +222,8 @@ class Publication(MContentModel):
 
         issue_keys = redis_db.zrevrange("issues", 0, -1)
 
-        issues =  [ 
-            issue_content_map[issue_key.split(":")[-1]]  for issue_key in issue_keys   
+        issues =  [
+            issue_content_map[issue_key.split(":")[-1]]  for issue_key in issue_keys
         ]
 
         issue_wrapper = lambda issue: Issue(Container(json.loads(issue)))
