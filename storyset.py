@@ -115,10 +115,10 @@ class StorySet(object):
         return StorySet(newkey)
 
     def __getitem__(self, k):
-        start = k.start
-        stop  = k.stop
-        if isinstance(k, slice):
 
+        if isinstance(k, slice):
+            start = k.start
+            stop  = k.stop
             if k.start is None:
                 start = 0
 
@@ -128,9 +128,9 @@ class StorySet(object):
             self.fetch(start=start, stop=stop-1)
             return self
         elif isinstance(k, int):
-            stories = selyf.fetch(start=k, stop=k)
+            stories = self.fetch(start=k, stop=k)
             if stories:
-                return self._load(stories[0]['object'])
+                return self.klass(self._load(stories[0]['object']))
             else:
                 return []
         else:
