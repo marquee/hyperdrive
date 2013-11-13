@@ -3,7 +3,8 @@ from dateutil    import parser
 
 import requests, json, zlib
 
-# TODO THIS IS BAD
+# TODO: THIS IS BAD
+# TODO: WHY
 from app.data_loader  import content_objects
 
 from .storyset import load, dump
@@ -84,7 +85,7 @@ class Denormalizer(object):
         )
 
     def _fetch_categories(self):
-        response = requests.get('http://%s.marquee.by/api/categories/' % self.publication_short_name)
+        response = requests.get('http://%s.marquee.local:8080/api/categories/' % self.publication_short_name)
         categories = json.loads(response.content)
 
         pipe = self.redis.pipeline()
@@ -98,12 +99,13 @@ class Denormalizer(object):
     def _fetch_issues(self):
         issues = content_objects.filter(
             role="issue",
-            type="container"
+            type="container",
+            first_published_date__exists=True
         ).execute()
 
         for i in issues:
             print i
-
+        print "LKASDJF"
         pipe = self.redis.pipeline()
         for issue in issues:
             first_published_date = issue['first_published_date']
@@ -115,6 +117,23 @@ class Denormalizer(object):
             pipe.hset("issue_content", issue.slug, issue.toJSON())
 
         pipe.execute()                
+
+    def store_issue(self, issue):
+        first_published_date = issue['first_published_date']
+
+        # if self.redis.zexists()
+        issue_key = "issue:{}".format(issue['slug'])
+        self.redis.zadd("issues", **{ 
+            issue_key : int(issue['issue_number'])
+        })
+        self.redis.hset("issue_content", issue['slug'], json.dumps(issue))
+
+    def remove_issue(self, issue):
+        issue_key = "issue:{}".format(issue['slug'])
+
+        self.redis.zrem("issues", issue_key)
+
+        self.redis.hdel("issue_content", issue["slug"])
 
     def sync(self):
         self._fetch_publication()
@@ -210,7 +229,9 @@ class Denormalizer(object):
             first_published_date = parser.parse(story['first_published_date'])
 
             issue_key = "issue:{}:stories".format(issue_content['slug'])
-            self.redis.zadd(issue_key, **{story_key : first_published_date.strftime("%s")})
+            self.redis.zadd(issue_key, **{
+                story_key : first_published_date.strftime("%s")
+            })
 
 
     def remove(self, story_slug):

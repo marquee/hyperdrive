@@ -7,6 +7,12 @@ from flask          import abort, request
 import json
 import redis
 
+def handle_issue_event(action, issue, denorm):
+    if action == "publish":
+        denorm.store_issue(issue)
+    elif action in ["unpublish", "delete"]:
+        denorm.remove_issue(issue)
+
 @hyperdrive.route("/thisisareallyobscureurltoawebhook/", methods=["POST"])
 def webhook():
     """
@@ -24,24 +30,29 @@ def webhook():
         redisdb
     )
     
-
     if request.method == "POST":
+        data = json.loads(request.data)
+        if data.get('role', None) == "issue":
+            handle_issue_event(data['action'], data['issue'], denorm)
 
-        data    = json.loads(request.data)
-        action  = data['action']
-        # print "YOYOYOYO", data
-        if action == "publish":
-            story = json.loads(data['story_json'])
-            success = denorm.store_story(story)
+            return json.dumps({
+                "status" : "good"
+            })
 
-        elif action in ["unpublish", "delete"]:
-            story_slug = data['story_slug']
-            success = denorm.remove(story_slug)
+        else:
+            action  = data['action']
+            if action == "publish":
+                story = json.loads(data['story_json'])
+                success = denorm.store_story(story)
 
-        status = "good" if success else "bad"
+            elif action in ["unpublish", "delete"]:
+                story_slug = data['story_slug']
+                success = denorm.remove(story_slug)
 
-        return json.dumps({
-            'status' : status
-        })
+            status = "good" if success else "bad"
+
+            return json.dumps({
+                'status' : status
+            })
 
     abort(405)
