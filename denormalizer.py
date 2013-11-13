@@ -85,7 +85,8 @@ class Denormalizer(object):
         )
 
     def _fetch_categories(self):
-        response = requests.get('http://%s.marquee.local:8080/api/categories/' % self.publication_short_name)
+        response = requests.get('http://%s.marquee.by/api/categories/' % self.publication_short_name)
+
         categories = json.loads(response.content)
 
         pipe = self.redis.pipeline()
