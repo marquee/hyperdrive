@@ -77,7 +77,6 @@ class StorySet(object):
         # TODO: think this through more
         if self._results:
             if start != None and stop != None:
-                print "STARTSTOP", start, stop, len(self._results[start:stop+1])
                 return self._results[start:stop+1]
             else:
                 return self._results
@@ -86,7 +85,6 @@ class StorySet(object):
             start = 0
             stop  = -1
 
-        print start, stop
         self.set_story_keys = self._redis.zrevrange(self.setkey, start, stop)
         pipe = self._redis.pipeline()
         [pipe.hgetall(key) for key in self.set_story_keys]
@@ -130,9 +128,10 @@ class StorySet(object):
         elif isinstance(k, int):
             stories = self.fetch(start=k, stop=k)
             if stories:
-                return self.klass(self._load(stories[0]['object']))
+                s = self.klass(self._load(stories[0]['object']))
+                return s
             else:
-                return []
+                raise IndexError
         else:
             raise TypeError
 
@@ -211,7 +210,6 @@ class StorySet(object):
             if computation:
                 computation = computation - subtractand
             else:
-                # print cls("stories")
                 computation = cls("stories") - subtractand
         return computation 
 
