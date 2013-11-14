@@ -47,6 +47,7 @@ class Denormalizer(object):
         self.post_save_funcs        = kwargs.get("post_save_funcs", [])
         self.finalize_fn            = kwargs.get("finalize_fn", None)
         self.fields                 = kwargs.get("fields", [])
+        self.story_sort             = kwargs.get("story_sort", "first_published_date")
         self.histograms             = kwargs.get("histograms", [])
 
     def fetch_stories(self):
@@ -85,9 +86,11 @@ class Denormalizer(object):
         )
 
     def _fetch_categories(self):
-        response = requests.get('http://%s.marquee.by/api/categories/' % self.publication_short_name)
-
-        categories = json.loads(response.content)
+        try:
+            response = requests.get('http://%s.marquee.by/api/categories/' % self.publication_short_name)
+            categories = json.loads(response.content)
+        except:
+            return
 
         pipe = self.redis.pipeline()
         for c in categories:
@@ -117,7 +120,7 @@ class Denormalizer(object):
             })
             pipe.hset("issue_content", issue.slug, issue.toJSON())
 
-        pipe.execute()                
+        pipe.execute()
 
     def store_issue(self, issue):
         first_published_date = issue['first_published_date']
@@ -140,6 +143,7 @@ class Denormalizer(object):
         self._fetch_publication()
         self._fetch_categories()
         self._fetch_issues()
+
         for story in self.fetch_stories():
             self.store_story(story)
 
@@ -149,6 +153,7 @@ class Denormalizer(object):
         story_slug = story['slug']
 
         story_key = "story:{}".format(story_slug)
+
         try:
             first_published_date = parser.parse(story['first_published_date'])
         except Exception as e:
@@ -165,9 +170,14 @@ class Denormalizer(object):
         if self.prep_json_fn:
             self.prep_json_fn(story)
 
+        if self.story_sort == "first_published_date":
+            score = first_published_date.strftime("%s")
+        else:
+            score = -1*int(story.get(self.story_sort, 0))
+
         self.redis.zadd(
             "stories",
-            **{ story_key : first_published_date.strftime("%s")}
+            **{ story_key : score}
         )
 
         self.redis.hmset("id_to_slug", {story['id']: story_slug})

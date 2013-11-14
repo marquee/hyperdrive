@@ -3,12 +3,15 @@ from app 			    import settings
 from flask 				import current_app
 from flask.ext.script   import Manager
 
+from importlib 			import import_module
+
 from .denormalizer import Denormalizer
 from .main		   import redisdb
 
 import time
 
 manager = Manager(usage="yo")
+
 
 @manager.command
 def sync_content():
@@ -17,12 +20,20 @@ def sync_content():
 	print "<movie reference>"
 
 	redisdb.flushdb()
-	denorm = Denormalizer(
-    	settings.PUBLICATION_SHORT_NAME,
-    	redisdb
-	)
 
-	denorm.sync()
+	try:
+		sync_content = settings.HYPERDRIVE_SETTINGS['SYNC_CONTENT']
+		module, fn = settings.HYPERDRIVE_SETTINGS['SYNC_FUNCTION'].rsplit(".", 1)
+		sync_content = getattr(import_module(module), fn)
+		sync_content()
+	except:
+		denorm = Denormalizer(
+    		settings.PUBLICATION_SHORT_NAME,
+    		redisdb
+		)
+
+		denorm.sync()
+
 	end_time  = time.time()
 
 	print "---------------------------------------"
