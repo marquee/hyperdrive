@@ -185,7 +185,8 @@ class Story(MContentModel, HasCoverContent):
         try:
             return settings.STORY_URL(self)
         except AttributeError:
-            return "/{1}/".format(self.slug)
+            print "/{0}/".format(self.slug)
+            return "/{0}/".format(self.slug)
 
 class Publication(MContentModel):
     """
