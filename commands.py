@@ -22,11 +22,11 @@ def sync_content():
 	redisdb.flushdb()
 
 	try:
-		sync_content = settings.HYPERDRIVE_SETTINGS['SYNC_CONTENT']
 		module, fn = settings.HYPERDRIVE_SETTINGS['SYNC_FUNCTION'].rsplit(".", 1)
 		sync_content = getattr(import_module(module), fn)
 		sync_content()
-	except:
+	except Exception as e:
+		print e
 		denorm = Denormalizer(
     		settings.PUBLICATION_SHORT_NAME,
     		redisdb
