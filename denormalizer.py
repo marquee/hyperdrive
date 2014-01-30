@@ -50,6 +50,8 @@ class Denormalizer(object):
         self.story_sort             = kwargs.get("story_sort", "first_published_date")
         self.histograms             = kwargs.get("histograms", [])
 
+        self.dump                   = dump
+
     def fetch_stories(self):
         start = 0
         limit = 100
