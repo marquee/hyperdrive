@@ -51,6 +51,7 @@ class Denormalizer(object):
         self.histograms             = kwargs.get("histograms", [])
 
         self.dump                   = dump
+        self.load                   = load
 
     def fetch_stories(self):
         start = 0
