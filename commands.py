@@ -1,9 +1,8 @@
 from app                import settings
+from app.utils          import import_by_path
 
 from flask              import current_app
 from flask.ext.script   import Manager
-
-from importlib          import import_module
 
 from .denormalizer import Denormalizer
 from .main         import redisdb
@@ -11,7 +10,6 @@ from .main         import redisdb
 import time
 
 manager = Manager(usage="yo")
-
 
 @manager.command
 def sync_content():
@@ -22,11 +20,9 @@ def sync_content():
     redisdb.flushdb()
 
     try:
-        module, fn = settings.HYPERDRIVE_SETTINGS['SYNC_FUNCTION'].rsplit(".", 1)
-        sync_content = getattr(import_module(module), fn)
+        sync_content = import_by_path(settings.HYPERDRIVE_SETTINGS['SYNC_FUNCTION'])
         sync_content()
-    except Exception as e:
-        print e
+    except ImportError:
         denorm = Denormalizer(
             settings.PUBLICATION_SHORT_NAME,
             redisdb

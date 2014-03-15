@@ -168,10 +168,16 @@ class Denormalizer(object):
             self.remove(old_story_slug)
 
         first_published_date = parser.parse(story['first_published_date'])
-
-        # modify json before storing
+        
+        # DEPRECATE THIS
         if self.prep_json_fn:
             self.prep_json_fn(story)
+
+        # modify json before storing
+        try:
+            self.add_extra_story_data(story)
+        except AttributeError:
+            pass            
 
         if self.story_sort == "first_published_date":
             score = first_published_date.strftime("%s")

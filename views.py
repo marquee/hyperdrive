@@ -7,6 +7,9 @@ from flask          import abort, request
 import json
 import redis
 
+from app import settings
+from app.utils import import_by_path
+
 def handle_issue_event(action, issue, denorm):
     if action == "publish":
         denorm.store_issue(issue)
@@ -25,7 +28,13 @@ def webhook():
         story_slug - slug of story to be removed(if action == unpublish)
     """
 
-    denorm = Denormalizer(
+    try:
+        DenormalizerClass = import_by_path(settings.HYPERDRIVE_SETTINGS['DENORMALIZER'])
+    except Exception as e:
+        print e
+        DenormalizerClass = Denormalizer
+
+    denorm = DenormalizerClass(
         settings.PUBLICATION_SHORT_NAME,
         redisdb
     )
