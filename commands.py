@@ -11,18 +11,24 @@ import time
 
 manager = Manager(usage="yo")
 
-@manager.command
-def sync_content():
+@manager.option("--destructive")
+def sync_content(destructive=False):
     start_time = time.time()
     print "Initiating hyperdrive sync for %s..." % settings.PUBLICATION_SHORT_NAME
     print "<movie reference>"
 
-    redisdb.flushdb()
+    
 
+    if destructive == "true":
+        redisdb.flushdb()    
+    else:
+        print "Starting non-destructive sync"
+        
     try:
         sync_content = import_by_path(settings.HYPERDRIVE_SETTINGS['SYNC_FUNCTION'])
         sync_content()
     except ImportError:
+        print "IMPORT ERROR"
         denorm = Denormalizer(
             settings.PUBLICATION_SHORT_NAME,
             redisdb
