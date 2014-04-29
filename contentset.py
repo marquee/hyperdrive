@@ -1,4 +1,4 @@
-from app            import settings
+
 from content        import ContentObjects, Container
 from content.models import instanceFromRaw
 from .main          import redisdb
@@ -14,19 +14,11 @@ import zlib
 
 
 def load(s):
-    COMPRESS = getattr(settings, "HYPERDRIVE_COMPRESS", False)
-    if COMPRESS:
-        return json.loads(zlib.decompress(s))
-    else:
-        return json.loads(s)
+    return json.loads(s)
 
 
 def dump(s):
-    COMPRESS = getattr(settings, "HYPERDRIVE_COMPRESS", False)
-    if COMPRESS:
-        return zlib.compress(json.dumps(s), 9)
-    else:
-        return json.dumps(s)
+    return json.dumps(s)
 
     
 
