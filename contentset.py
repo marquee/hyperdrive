@@ -10,6 +10,7 @@ import logging
 import redis
 import requests
 import zlib
+import random
 
 
 
@@ -20,7 +21,7 @@ def load(s):
 def dump(s):
     return json.dumps(s)
 
-    
+print "yoyoyo"
 
 class ContentSet(object):
     """
@@ -121,7 +122,6 @@ class ContentSet(object):
         for s in self._results:
             yield self.klass(self._load(s['object']))
 
-
     def date_slice(self, start, end, offset=None, limit=None):
         self.set_keys = self._redis.zrangebyscore(
             self.setkey,
@@ -214,3 +214,9 @@ class ContentSet(object):
     def all(cls):
         return cls(cls.supersetkey)
     
+    @classmethod
+    def random(cls):
+        i = random.randint(1, redisdb.zcard(cls.supersetkey))
+        random_content = cls()[i:i+1]
+        rc = random_content[0]
+        return rc
