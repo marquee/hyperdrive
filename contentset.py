@@ -21,7 +21,6 @@ def load(s):
 def dump(s):
     return json.dumps(s)
 
-print "yoyoyo"
 
 class ContentSet(object):
     """
