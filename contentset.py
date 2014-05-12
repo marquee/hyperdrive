@@ -191,7 +191,7 @@ class ContentSet(object):
 
     @classmethod
     def get(cls, slug):
-        key = "{}:{}".format(cls.role, slug)
+        key = u"{}:{}".format(cls.role, slug)
         container_hash = redisdb.hgetall(key)
 
         if not container_hash:
