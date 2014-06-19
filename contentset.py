@@ -138,7 +138,7 @@ class ContentSet(object):
 
     def _load(self, s):
         # what.the.fuck
-        return instanceFromRaw(load(s))
+        return Container(load(s))
 
     @classmethod
     def select(cls, **kwargs):
