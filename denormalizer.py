@@ -185,7 +185,7 @@ class Denormalizer(object):
             score = -1*int(story.get(self.story_sort, 0))
 
         self.redis.zadd(
-            "stories",
+            "story:all",
             **{ story_key : score}
         )
 
